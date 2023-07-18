@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plugin>
+    <id>com.fr.plugin.ai.wizards</id>
+    <name><![CDATA[AI.Wizard]]></name>
+    <active>yes</active>
+    <hidden>no</hidden>
+    <version>1.0</version>
+    <env-version>10.0~</env-version>
+    <jartime>2020-06-01</jartime>
+    <vendor>finereport</vendor>
+    <description><![CDATA[AI.Wizard]]></description>
+    <change-notes><![CDATA[
+     <p>v1.0：初始版本</p>
+    ]]></change-notes>
+    <lifecycle-monitor class="com.fr.ai.wizards.PluginLifecycle"/>
+    <function-recorder class="com.fr.ai.wizards.PluginLifecycle"/>
+    <extra-decision>
+        <ControllerRegisterProvider class="com.fr.plugin.platform.debug.resources.PlatformDebugControllerBridge"/>
+    </extra-decision>
+</plugin>
