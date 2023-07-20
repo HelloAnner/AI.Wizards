@@ -1,5 +1,6 @@
 apply plugin: 'java'
 
+// 自己本地的第三方的JAR
 def webinfLib = '/Users/anner/projects/release_6.0/webapps/webroot/WEB-INF'
 
 ext {

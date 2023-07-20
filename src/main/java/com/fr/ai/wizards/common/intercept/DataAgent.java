@@ -1,7 +1,6 @@
-package com.fr.ai.wizards.common;
+package com.fr.ai.wizards.common.intercept;
 
 import com.fr.ai.wizards.AIWizards;
-import com.fr.ai.wizards.common.intercept.NamedTableDataAdvisor;
 import com.fr.third.net.bytebuddy.ByteBuddy;
 import com.fr.third.net.bytebuddy.agent.ByteBuddyAgent;
 import com.fr.third.net.bytebuddy.agent.builder.AgentBuilder;

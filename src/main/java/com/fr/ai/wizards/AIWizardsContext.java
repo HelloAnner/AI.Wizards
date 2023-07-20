@@ -53,7 +53,7 @@ public class AIWizardsContext {
         StringBuilder stringBuilder = new StringBuilder();
         sessionIDWizardInfoCache.asMap().forEach((id, info) -> {
             try {
-                stringBuilder.append(info.toJson()).append("\n");
+                stringBuilder.append(info.getSessionID()).append("->").append(info.toJson()).append("\n");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -1,7 +1,6 @@
 package com.fr.ai.wizards.common.intercept;
 
 import com.fr.ai.wizards.AIWizards;
-import com.fr.ai.wizards.common.Advisor;
 import com.fr.general.data.DataModel;
 import com.fr.invoke.Reflect;
 import com.fr.plugin.manage.PluginManager;

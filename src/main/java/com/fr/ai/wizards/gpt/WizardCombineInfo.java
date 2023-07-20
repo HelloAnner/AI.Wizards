@@ -18,6 +18,8 @@ import java.util.Map;
  * <p>
  * 数据和语料信息组装完成之后，这里汇总，开始交给大模型黑盒子
  * <p>
+ * Data + Sem
+ * <p>
  * TODO 这里如果是前台调用模型接口，可以先不加内容，只做 data 和 semantic 内容的组装，给前台使用
  */
 public class WizardCombineInfo {

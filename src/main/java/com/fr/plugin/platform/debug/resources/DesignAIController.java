@@ -1,11 +1,13 @@
 package com.fr.plugin.platform.debug.resources;
 
 import com.fr.ai.wizards.AIWizardsContext;
+import com.fr.ai.wizards.gpt.AIBox;
 import com.fr.decision.webservice.annotation.LoginStatusChecker;
 import com.fr.decision.webservice.v10.login.TokenResource;
 import com.fr.third.fasterxml.jackson.core.JsonProcessingException;
 import com.fr.third.springframework.web.bind.annotation.RequestMapping;
 import com.fr.third.springframework.web.bind.annotation.RequestMethod;
+import com.fr.third.springframework.web.bind.annotation.RequestParam;
 import com.fr.third.springframework.web.bind.annotation.ResponseBody;
 import com.fr.third.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +31,15 @@ public class DesignAIController {
         return AIWizardsContext.print();
     }
 
+    @RequestMapping(value = "/oneway", method = RequestMethod.GET)
+    public String oneway(HttpServletRequest request, HttpServletResponse response,
+                         @RequestParam(name = "sessionID") String sessionID) throws JsonProcessingException {
+        return AIBox.oneway(sessionID);
+    }
+
     @RequestMapping(value = "/cache/clean", method = RequestMethod.GET)
     public void cleanAll(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+        AIWizardsContext.clearAll();
     }
 
 }

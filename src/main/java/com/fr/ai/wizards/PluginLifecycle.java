@@ -1,6 +1,6 @@
 package com.fr.ai.wizards;
 
-import com.fr.ai.wizards.common.DataAgent;
+import com.fr.ai.wizards.common.intercept.DataAgent;
 import com.fr.log.FineLoggerFactory;
 import com.fr.plugin.context.PluginContext;
 import com.fr.plugin.observer.inner.AbstractPluginLifecycleMonitor;

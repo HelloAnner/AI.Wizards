@@ -1,4 +1,4 @@
-package com.fr.ai.wizards.common;
+package com.fr.ai.wizards.common.intercept;
 
 import com.fr.third.net.bytebuddy.description.method.MethodDescription;
 import com.fr.third.net.bytebuddy.description.type.TypeDescription;
