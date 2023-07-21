@@ -11,7 +11,7 @@ public class PlatformDebugControllerBridge extends AbstractControllerRegisterPro
     @Override
     public Class<?>[] getControllers() {
         return new Class[]{
-                DesignAIController.class
+                AIWizardController.class
         };
     }
 }

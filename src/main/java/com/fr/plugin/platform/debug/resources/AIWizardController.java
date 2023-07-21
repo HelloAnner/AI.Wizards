@@ -18,12 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author anner
  * @version 11.0
  * Created on 2023/7/17
+ * <p>
+ * 对外的 rest 接口
  */
 @RestController
 @ResponseBody
 @LoginStatusChecker(tokenResource = TokenResource.COOKIE)
 @RequestMapping("/ai/wizards")
-public class DesignAIController {
+public class AIWizardController {
 
 
     @RequestMapping(value = "/cache", method = RequestMethod.GET)
