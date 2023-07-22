@@ -9,8 +9,8 @@ ext {
      * 1.如果依赖的jar需要打包到zip中,放置在lib根目录下
      * 2.如果依赖的jar仅仅是编译时需要，防止在lib下子目录下即可
      */
-    libPath = webinfLib + "/lib"
-
+//    libPath = webinfLib + "/lib"
+    libPath = '/Users/anner/fine/jar/11.0_release'
     /**
      * 是否对插件的class进行加密保护，防止反编译
      */
@@ -132,8 +132,6 @@ dependencies {
 
     implementation 'javax.servlet:servlet-api:2.5'
 
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
-    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 }
 
