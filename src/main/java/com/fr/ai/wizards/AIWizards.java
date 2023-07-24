@@ -30,10 +30,6 @@ public class AIWizards {
         FineLoggerFactory.getLogger().error(stack, msg, params);
     }
 
-    public static ObjectMapper objectMapper() {
-        return mapper;
-    }
-
     public static String toJson(Object obj) {
         try {
             return mapper.writeValueAsString(obj);

@@ -29,7 +29,8 @@ public class AIWizardsLifecycle extends AbstractPluginLifecycleMonitor {
     @Override
     public void beforeStop(PluginContext context) {
         FineDataAgent.uninstall();
-        APIKeyPacks.offline();
         AIWizards.log("fine data agent tools detached.");
+
+        APIKeyPacks.offline();
     }
 }

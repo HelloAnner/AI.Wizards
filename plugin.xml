@@ -16,5 +16,6 @@
     <function-recorder class="com.fr.ai.wizards.AIWizardsLifecycle"/>
     <extra-decision>
         <ControllerRegisterProvider class="com.fr.plugin.platform.debug.resources.PlatformDebugControllerBridge"/>
+        <WebResourceProvider class="com.fr.ai.wizards.AIWizardsWebResource"/>
     </extra-decision>
 </plugin>
