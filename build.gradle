@@ -131,7 +131,5 @@ dependencies {
     implementation fileTree(dir: libPath, include: ['**/*.jar'])
 
     implementation 'javax.servlet:servlet-api:2.5'
-
-    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 }
 
