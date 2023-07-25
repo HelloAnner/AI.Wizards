@@ -9,6 +9,8 @@ import com.fr.web.struct.category.StylePath;
  * @author anner
  * @version 11.0
  * Created on 2023/7/24
+ * <p>
+ * 前台资源位置
  */
 public class AIWizardsComponent extends Component {
 

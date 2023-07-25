@@ -18,7 +18,7 @@ import java.lang.instrument.Instrumentation;
  * @version 11.0
  * Created on 2023/7/17
  */
-public class FineDataAgent {
+public class WizardsDataAgent {
     private static final int REDEFINE_FIXED_SIZE = 1;
 
     private static final Advisor[] advisors = {
@@ -44,7 +44,7 @@ public class FineDataAgent {
         }
     }
 
-    private FineDataAgent() {
+    private WizardsDataAgent() {
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.fr.ai.wizards;
 
-import com.fr.ai.wizards.common.intercept.FineDataAgent;
+import com.fr.ai.wizards.common.intercept.WizardsDataAgent;
 import com.fr.ai.wizards.common.security.APIKeyPacks;
 import com.fr.plugin.context.PluginContext;
 import com.fr.plugin.observer.inner.AbstractPluginLifecycleMonitor;
@@ -18,7 +18,7 @@ public class AIWizardsLifecycle extends AbstractPluginLifecycleMonitor {
     @Override
     public void afterRun(PluginContext context) {
         // 拦截业务数据
-        FineDataAgent.install();
+        WizardsDataAgent.install();
         AIWizards.log("fine data agent tools attached.");
 
         // 读取API KEY
@@ -28,7 +28,7 @@ public class AIWizardsLifecycle extends AbstractPluginLifecycleMonitor {
 
     @Override
     public void beforeStop(PluginContext context) {
-        FineDataAgent.uninstall();
+        WizardsDataAgent.uninstall();
         AIWizards.log("fine data agent tools detached.");
 
         APIKeyPacks.offline();

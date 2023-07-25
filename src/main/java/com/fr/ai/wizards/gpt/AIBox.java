@@ -5,30 +5,12 @@ import com.fr.ai.wizards.AIWizardsContext;
 import com.fr.ai.wizards.common.format.WizardFormatMaster;
 import com.fr.ai.wizards.common.format.table.TableExcelFormat;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 /**
  * @author anner
  * @version 11.0
  * Created on 2023/7/20
  */
 public class AIBox {
-
-    // 这里可以思考一下是不是可以多个模型线性调用，类似 langchain 的机制
-    private final static List<AIAgent> agents = new CopyOnWriteArrayList<>();
-
-
-    public static void registerAgent(AIAgent agent) {
-        Optional.ofNullable(agent).ifPresent(agents::add);
-    }
-
-
-    public static void sse() {
-
-    }
-
 
     /**
      * 一轮的对话结果，先测试一下
