@@ -27,7 +27,7 @@ public class NameTableMethodProcessor {
      */
     public static void fetchTableData(DataModel model) throws TableDataException {
         String sessionID = AIWizards.fetchSessionID();
-        WizardCombineInfo combineInfo = AIWizardsContext.get(sessionID);
+        WizardCombineInfo combineInfo = AIWizardsContext.getSessionIDInfo(sessionID);
 
         // 解析表名称
         WizardTableRowSemantic tableRowSemantic = new WizardTableRowSemantic(model.getMetric().getDsName());

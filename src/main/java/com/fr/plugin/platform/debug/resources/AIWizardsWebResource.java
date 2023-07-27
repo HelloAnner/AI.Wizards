@@ -1,5 +1,6 @@
-package com.fr.ai.wizards;
+package com.fr.plugin.platform.debug.resources;
 
+import com.fr.ai.wizards.AIWizardsComponent;
 import com.fr.decision.fun.impl.AbstractWebResourceProvider;
 import com.fr.decision.web.MainComponent;
 import com.fr.web.struct.Atom;

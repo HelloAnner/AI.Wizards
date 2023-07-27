@@ -19,6 +19,8 @@ public class AIWizards {
 
     public final static String PLUGIN_ID = "com.fr.plugin.ai.wizards";
 
+    public final static String CONFIG_NAME = "api_keys.properties";
+
     // 插件序列化器 - 这里统一一下
     private final static ObjectMapper mapper = new ObjectMapper();
 

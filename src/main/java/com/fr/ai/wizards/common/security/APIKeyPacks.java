@@ -22,12 +22,17 @@ public class APIKeyPacks {
 
     private final static String OPENGLM_API_KEY = "OPENGLM_API_KEY";
 
+    private final static String GLM_TOKEN = "GLM_TOKEN";
+    private final static String OCR_TOKEN = "OCR_TOKEN";
+
     private final static Map<String, String> apiKeyCache = new ConcurrentHashMap<>();
 
 
     public static void online() {
         apiKeyCache.put(OPENAI_API_KEY, StringUtils.EMPTY);
         apiKeyCache.put(OPENGLM_API_KEY, StringUtils.EMPTY);
+        apiKeyCache.put(GLM_TOKEN, StringUtils.EMPTY);
+        apiKeyCache.put(OCR_TOKEN, StringUtils.EMPTY);
 
 
         // 先读取程序启动参数，不存在读取系统环境变量
@@ -55,6 +60,14 @@ public class APIKeyPacks {
 
     public static String getOpenglmAPIKey() {
         return apiKeyCache.get(OPENGLM_API_KEY);
+    }
+
+    public static String getGlmToken() {
+        return apiKeyCache.get(GLM_TOKEN);
+    }
+
+    public static String getOcrToken() {
+        return apiKeyCache.get(OCR_TOKEN);
     }
 
     private static void readFromDebugParam() {
@@ -87,7 +100,7 @@ public class APIKeyPacks {
         }
         try {
             Properties properties = new Properties();
-            properties.load(APIKeyPacks.class.getResourceAsStream("key.properties"));
+            properties.load(APIKeyPacks.class.getResourceAsStream(AIWizards.CONFIG_NAME));
             Map<String, String> tmpCache = new HashMap<>();
             apiKeyCache.forEach((keyName, keyVal) -> {
                 if (StringUtils.isEmpty(keyVal)) {

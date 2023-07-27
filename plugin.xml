@@ -6,7 +6,7 @@
     <hidden>no</hidden>
     <version>1.0</version>
     <env-version>10.0~</env-version>
-    <jartime>2023-07-01</jartime>
+    <jartime>2023-01-01</jartime>
     <vendor>ai.wizards团队成员</vendor>
     <description><![CDATA[AI.Wizard]]></description>
     <change-notes><![CDATA[
@@ -16,6 +16,6 @@
     <function-recorder class="com.fr.ai.wizards.AIWizardsLifecycle"/>
     <extra-decision>
         <ControllerRegisterProvider class="com.fr.plugin.platform.debug.resources.PlatformDebugControllerBridge"/>
-        <WebResourceProvider class="com.fr.ai.wizards.AIWizardsWebResource"/>
+        <WebResourceProvider class="com.fr.plugin.platform.debug.resources.AIWizardsWebResource"/>
     </extra-decision>
 </plugin>

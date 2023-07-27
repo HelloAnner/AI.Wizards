@@ -22,7 +22,7 @@ public class AIBox {
      */
     public static String oneway(String sessionID) {
         try {
-            WizardCombineInfo combineInfo = AIWizardsContext.get(sessionID);
+            WizardCombineInfo combineInfo = AIWizardsContext.getSessionIDInfo(sessionID);
             StringBuilder res = new StringBuilder();
 
             // 格式化一下信息 , 测试一下二维表的可视化
@@ -35,7 +35,7 @@ public class AIBox {
         } catch (Exception e) {
             AIWizards.error(e, "handle oneway request error ,sessionID is {}", sessionID);
         } finally {
-            AIWizardsContext.release(sessionID);
+            AIWizardsContext.releaseSessionIDInfo(sessionID);
         }
         return null;
     }
