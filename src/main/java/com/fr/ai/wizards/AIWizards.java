@@ -40,6 +40,14 @@ public class AIWizards {
         }
     }
 
+    public static <T> T fromJson(String msg, Class<T> cls) {
+        try {
+            return mapper.readValue(msg, cls);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String fetchSessionID() {
         return WebUtils.getHTTPRequestParameter(((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest(), ParameterConstants.SESSION_ID);
     }
