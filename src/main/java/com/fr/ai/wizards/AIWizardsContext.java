@@ -1,8 +1,8 @@
 package com.fr.ai.wizards;
 
 import com.fr.ai.wizards.gpt.CombinePromptInfo;
+import com.fr.ai.wizards.gpt.CombineTplDataInfo;
 import com.fr.ai.wizards.gpt.PromptInfo;
-import com.fr.ai.wizards.gpt.WizardCombineInfo;
 import com.fr.essential.caffeine.cache.Cache;
 import com.fr.essential.caffeine.cache.Caffeine;
 import com.fr.third.fasterxml.jackson.core.JsonProcessingException;
@@ -21,7 +21,7 @@ public class AIWizardsContext {
     private AIWizardsContext() {
     }
 
-    private final static Cache<String, WizardCombineInfo> sessionIDWizardInfoCache = Caffeine.newBuilder().build();
+    private final static Cache<String, CombineTplDataInfo> sessionIDWizardInfoCache = Caffeine.newBuilder().build();
 
     // id - 上下文信息
     private final static Cache<String, CombinePromptInfo> promptCache = Caffeine.newBuilder().build();
@@ -52,9 +52,14 @@ public class AIWizardsContext {
      * @param sessionID 预览的sessionID
      * @return 缓存信息
      */
-    public static WizardCombineInfo getSessionIDInfo(String sessionID) {
+    public static CombineTplDataInfo getSessionIDInfo(String sessionID) {
         AIWizards.log("get or new cache info for sessionID {} , now cache size is {}", sessionID, sessionIDWizardInfoCache.estimatedSize());
-        return sessionIDWizardInfoCache.get(sessionID, WizardCombineInfo::new);
+        return sessionIDWizardInfoCache.get(sessionID, CombineTplDataInfo::new);
+    }
+
+
+    public static CombineTplDataInfo getSessionIDInfoIfPresent(String sessionID) {
+        return sessionIDWizardInfoCache.getIfPresent(sessionID);
     }
 
 
@@ -65,7 +70,7 @@ public class AIWizardsContext {
      *
      * @param sessionID
      */
-    public static void releaseSessionIDInfo(String sessionID) {
+    public static void cleanSessionIDInfo(String sessionID) {
         sessionIDWizardInfoCache.invalidate(sessionID);
         AIWizards.log("release sessionID {} cache success , now cache estimated size is {}", sessionID, sessionIDWizardInfoCache.estimatedSize());
     }
@@ -85,10 +90,5 @@ public class AIWizardsContext {
             }
         });
         return stringBuilder.toString();
-    }
-
-
-    public static void clearAll() {
-        sessionIDWizardInfoCache.invalidateAll();
     }
 }

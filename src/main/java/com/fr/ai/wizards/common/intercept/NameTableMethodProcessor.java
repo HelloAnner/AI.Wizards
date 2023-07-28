@@ -3,7 +3,7 @@ package com.fr.ai.wizards.common.intercept;
 import com.fr.ai.wizards.AIWizards;
 import com.fr.ai.wizards.AIWizardsContext;
 import com.fr.ai.wizards.data.WizardTableData;
-import com.fr.ai.wizards.gpt.WizardCombineInfo;
+import com.fr.ai.wizards.gpt.CombineTplDataInfo;
 import com.fr.ai.wizards.semantic.WizardTableRowSemantic;
 import com.fr.general.data.DataModel;
 import com.fr.general.data.TableDataException;
@@ -27,7 +27,7 @@ public class NameTableMethodProcessor {
      */
     public static void fetchTableData(DataModel model) throws TableDataException {
         String sessionID = AIWizards.fetchSessionID();
-        WizardCombineInfo combineInfo = AIWizardsContext.getSessionIDInfo(sessionID);
+        CombineTplDataInfo combineInfo = AIWizardsContext.getSessionIDInfo(sessionID);
 
         // 解析表名称
         WizardTableRowSemantic tableRowSemantic = new WizardTableRowSemantic(model.getMetric().getDsName());

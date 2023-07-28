@@ -1,7 +1,10 @@
 package com.fr.plugin.platform.debug.resources;
 
+import com.fr.ai.wizards.AIWizards;
 import com.fr.ai.wizards.AIWizardsContext;
 import com.fr.ai.wizards.gpt.AIBox;
+import com.fr.ai.wizards.gpt.CombineTplDataInfo;
+import com.fr.decision.webservice.Response;
 import com.fr.decision.webservice.annotation.LoginStatusChecker;
 import com.fr.decision.webservice.v10.login.TokenResource;
 import com.fr.third.fasterxml.jackson.core.JsonProcessingException;
@@ -24,24 +27,32 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @ResponseBody
 @LoginStatusChecker(tokenResource = TokenResource.COOKIE)
-@RequestMapping("/ai/wizards")
+@RequestMapping("/ai/wizards/data")
 public class AIWizardController {
 
 
-    @RequestMapping(value = "/cache", method = RequestMethod.GET)
-    public String testExit(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+    @RequestMapping(method = RequestMethod.GET)
+    public String getTmpData(HttpServletRequest request, HttpServletResponse response,
+                             @RequestParam(name = "session_id") String sessionID) throws JsonProcessingException {
+        CombineTplDataInfo combineTplDataInfo = AIWizardsContext.getSessionIDInfoIfPresent(sessionID);
+        if (combineTplDataInfo != null) {
+            // 转换拦截信息为可以理解的形式
+            return AIWizards.toJson(AIBox.oneway(combineTplDataInfo));
+        }
+        return "";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public Response clean(HttpServletRequest request, HttpServletResponse response,
+                          @RequestParam(name = "session_id") String sessionID) throws JsonProcessingException {
+        AIWizardsContext.cleanSessionIDInfo(sessionID);
+        return Response.success();
+    }
+
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String printAllData(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
         return AIWizardsContext.print();
-    }
-
-    @RequestMapping(value = "/oneway", method = RequestMethod.GET)
-    public String oneway(HttpServletRequest request, HttpServletResponse response,
-                         @RequestParam(name = "sessionID") String sessionID) throws JsonProcessingException {
-        return AIBox.oneway(sessionID);
-    }
-
-    @RequestMapping(value = "/cache/clean", method = RequestMethod.GET)
-    public void cleanAll(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
-        AIWizardsContext.clearAll();
     }
 
 }
