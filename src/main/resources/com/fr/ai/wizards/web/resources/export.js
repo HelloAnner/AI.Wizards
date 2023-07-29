@@ -252,16 +252,27 @@ BI.config("textarea.icon.click.handler", items => {
         const task = client && client.model && client.model.currTask;
         const templatePath = task.templatePath;
         console.log('定时调度选择的模板链接路径为:' + templatePath);
+        const sHeader = JSON.stringify({
+            'sign_type': 'SIGN',
+            'alg': 'HS256'
+        });
+        const sPayload = JSON.stringify({
+            'api_key': '3513375061aad94b9457b5cb19fc7bcf',
+            'exp': (new Date()).getTime() + 1000 * 60,
+            'timestamp': (new Date()).getTime(),
+        });
+        const token = KJUR.jws.JWS.sign('HS256', sHeader, sPayload, {utf8: 'IIzb5JykTnPyobuY'});
         if(task) {
               const prompt = "请用通顺、简洁的语言，模拟一个企业的报表的关键信息。要求有一年内的经营数据";
-              const token = BI.Cache.getCookie(DecCst.Cookie.TOKEN);
               return axios.post('/webroot/decision/ai/wizards/third/glm/sync', {
                 prompt: [{ 'role': 'user', 'content': prompt}]
             }, {
-                  headers: { 'Authorization': 'Bearer ' + token }
+                  params: {
+                      access_token: token
+                  },
             })
                 .then((data) => {
-                    const content= data.choices[0].content;
+                    const content= data.data.data.choices[0].content;
                     console.log(content);
                     client.store.setContentText(content);
                 })
