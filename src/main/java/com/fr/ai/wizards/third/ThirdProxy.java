@@ -1,7 +1,6 @@
 package com.fr.ai.wizards.third;
 
 import com.fr.ai.wizards.AIWizards;
-import com.fr.ai.wizards.common.security.APIKeyPacks;
 import com.fr.third.org.apache.http.client.config.RequestConfig;
 import com.fr.third.org.apache.http.client.methods.CloseableHttpResponse;
 import com.fr.third.org.apache.http.client.methods.HttpPost;
@@ -46,7 +45,7 @@ public class ThirdProxy {
     }
 
 
-    public static String glm(String prompt) {
+    public static String glm(String prompt, String token) {
         String responseBody = null;
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setDefaultRequestConfig(RequestConfig.custom()
@@ -58,7 +57,7 @@ public class ThirdProxy {
 
         try {
             HttpPost httpPost = new HttpPost("https://open.bigmodel.cn/api/paas/v3/model-api/chatglm_std/invoke");
-            httpPost.addHeader("Authorization", "Bearer " + APIKeyPacks.getGlmToken());
+            httpPost.addHeader("Authorization", "Bearer " + token);
             httpPost.setEntity(new StringEntity(prompt, ContentType.APPLICATION_JSON));
 
             CloseableHttpResponse response = httpClient.execute(httpPost);

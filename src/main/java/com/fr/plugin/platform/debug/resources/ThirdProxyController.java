@@ -2,12 +2,12 @@ package com.fr.plugin.platform.debug.resources;
 
 import com.fr.ai.wizards.AIWizards;
 import com.fr.ai.wizards.AIWizardsContext;
+import com.fr.ai.wizards.common.security.APIKeyPacks;
 import com.fr.ai.wizards.gpt.ChatGLMResponse;
 import com.fr.ai.wizards.gpt.CombinePromptInfo;
 import com.fr.ai.wizards.gpt.PromptInfo;
 import com.fr.ai.wizards.third.ThirdProxy;
 import com.fr.decision.webservice.annotation.LoginStatusChecker;
-import com.fr.decision.webservice.v10.login.TokenResource;
 import com.fr.stable.StringUtils;
 import com.fr.third.springframework.web.bind.annotation.PostMapping;
 import com.fr.third.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +27,7 @@ import java.util.Collections;
  */
 @RestController
 @ResponseBody
-@LoginStatusChecker(tokenResource = TokenResource.COOKIE)
+@LoginStatusChecker(required = false)
 @RequestMapping("/ai/wizards/third")
 public class ThirdProxyController {
 
@@ -43,14 +43,17 @@ public class ThirdProxyController {
                           @RequestParam(name = "id", required = false) String id,
                           @RequestParam(name = "access_token", required = false) String token,
                           @RequestBody CombinePromptInfo promptInfos) {
+        if (StringUtils.isEmpty(token)) {
+            token = APIKeyPacks.getGlmToken();
+        }
 
         if (StringUtils.isEmpty(id)) {
-            return ThirdProxy.glm(AIWizards.toJson(promptInfos));
+            return ThirdProxy.glm(AIWizards.toJson(promptInfos), token);
         }
 
         AIWizardsContext.appendPrompt(id, promptInfos.getPrompt());
         AIWizards.log(AIWizards.toJson(AIWizardsContext.getPrompt(id)));
-        String fromGlm = ThirdProxy.glm(AIWizards.toJson(AIWizardsContext.getPrompt(id)));
+        String fromGlm = ThirdProxy.glm(AIWizards.toJson(AIWizardsContext.getPrompt(id)), token);
         // 保存一下结果
         ChatGLMResponse chatGLMResponse = AIWizards.fromJson(fromGlm, ChatGLMResponse.class);
         PromptInfo promptInfo = new PromptInfo();

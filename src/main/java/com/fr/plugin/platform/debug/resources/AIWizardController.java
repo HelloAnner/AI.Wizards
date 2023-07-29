@@ -6,7 +6,6 @@ import com.fr.ai.wizards.gpt.AIBox;
 import com.fr.ai.wizards.gpt.CombineTplDataInfo;
 import com.fr.decision.webservice.Response;
 import com.fr.decision.webservice.annotation.LoginStatusChecker;
-import com.fr.decision.webservice.v10.login.TokenResource;
 import com.fr.third.fasterxml.jackson.core.JsonProcessingException;
 import com.fr.third.springframework.web.bind.annotation.RequestMapping;
 import com.fr.third.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @ResponseBody
-@LoginStatusChecker(tokenResource = TokenResource.COOKIE)
+@LoginStatusChecker(required = false)
 @RequestMapping("/ai/wizards/data")
 public class AIWizardController {
 
