@@ -22,7 +22,7 @@ import java.util.Map;
  * <p>
  * TODO 这里如果是前台调用模型接口，可以先不加内容，只做 data 和 semantic 内容的组装，给前台使用
  */
-public class WizardCombineInfo {
+public class CombineTplDataInfo {
 
     private String sessionID;
 
@@ -33,10 +33,10 @@ public class WizardCombineInfo {
     private Map<WizardTableRowSemantic, WizardTableData> wizardTableDataMap = new HashMap<>();
 
 
-    public WizardCombineInfo() {
+    public CombineTplDataInfo() {
     }
 
-    public WizardCombineInfo(String sessionID) {
+    public CombineTplDataInfo(String sessionID) {
         this.sessionID = sessionID;
     }
 
@@ -92,7 +92,7 @@ public class WizardCombineInfo {
         // 表名 -> 列名 -> 列数据
         private Map<String, Map<String, List<String>>> tableBean = new LinkedHashMap<>();
 
-        static CombineJsonBean from(WizardCombineInfo info) {
+        static CombineJsonBean from(CombineTplDataInfo info) {
             CombineJsonBean bean = new CombineJsonBean();
 
             info.textSemantics.forEach(sem -> bean.backgrounds.add(sem.getMsg()));

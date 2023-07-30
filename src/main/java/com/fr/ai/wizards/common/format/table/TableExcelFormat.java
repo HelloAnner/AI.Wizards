@@ -45,8 +45,8 @@ public class TableExcelFormat extends TableFormat {
 
     private void appendOneRowData(StringBuilder buffer, List<String> rowData) {
         buffer.append(COLUMN_SPLIT_CHAR);
-        for (int i = 0; i < rowData.size(); i++) {
-            buffer.append(rowData.get(i)).append(COLUMN_SPLIT_CHAR);
+        for (String rowDatum : rowData) {
+            buffer.append(rowDatum).append(COLUMN_SPLIT_CHAR);
         }
         buffer.append("\n");
     }

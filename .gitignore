@@ -1,0 +1,15 @@
+**/.idea
+
+**/build
+
+**/classes
+
+**/.gradle
+
+**/transform-classes
+
+**/target
+
+**/.vscode
+
+**/api_keys.properties

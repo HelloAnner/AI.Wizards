@@ -19,6 +19,8 @@ public class AIWizards {
 
     public final static String PLUGIN_ID = "com.fr.plugin.ai.wizards";
 
+    public final static String CONFIG_NAME = "api_keys.properties";
+
     // 插件序列化器 - 这里统一一下
     private final static ObjectMapper mapper = new ObjectMapper();
 
@@ -30,13 +32,17 @@ public class AIWizards {
         FineLoggerFactory.getLogger().error(stack, msg, params);
     }
 
-    public static ObjectMapper objectMapper() {
-        return mapper;
-    }
-
     public static String toJson(Object obj) {
         try {
             return mapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> T fromJson(String msg, Class<T> cls) {
+        try {
+            return mapper.readValue(msg, cls);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

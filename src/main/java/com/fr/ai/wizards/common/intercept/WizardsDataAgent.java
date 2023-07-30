@@ -18,7 +18,7 @@ import java.lang.instrument.Instrumentation;
  * @version 11.0
  * Created on 2023/7/17
  */
-public class DataAgent {
+public class WizardsDataAgent {
     private static final int REDEFINE_FIXED_SIZE = 1;
 
     private static final Advisor[] advisors = {
@@ -44,7 +44,7 @@ public class DataAgent {
         }
     }
 
-    private DataAgent() {
+    private WizardsDataAgent() {
     }
 
     /**
@@ -97,7 +97,7 @@ public class DataAgent {
                     AgentBuilder.RedefinitionStrategy.RETRANSFORMATION,
                     AgentBuilder.RedefinitionStrategy.BatchAllocator.ForFixedSize.ofSize(REDEFINE_FIXED_SIZE)
             );
-            AIWizards.log("[DEBUG-PLUGIN] shadow-version supply transform resetted."
+            AIWizards.log("shadow-version supply transform resetted."
             );
         }
     }
